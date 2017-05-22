@@ -21,4 +21,12 @@
         D.title as roleTitle
     </sql>
 
+    <sql id="employee">
+        E.id as employeeId,
+        E.name as employeeName,
+        E.department_id as departmentId,
+        E.role_id as roleId,
+        E.gender as employeeGender
+    </sql>
+
 </mapper>

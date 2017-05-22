@@ -3,9 +3,11 @@ package com.thoughtworks.ketsu.infrastructure.records;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.thoughtworks.ketsu.domain.departments.DepartmentRepo;
+import com.thoughtworks.ketsu.domain.employees.EmployeeRepo;
 import com.thoughtworks.ketsu.domain.roles.RoleRepo;
 import com.thoughtworks.ketsu.domain.user.UserRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.DepartmentRepoImpl;
+import com.thoughtworks.ketsu.infrastructure.repositories.EmployeeRepoImpl;
 import com.thoughtworks.ketsu.infrastructure.repositories.MyBatisUserRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.RoleRepoImpl;
 import org.apache.ibatis.plugin.Interceptor;
@@ -58,6 +60,7 @@ public class Models extends AbstractModule {
         bind(UserRepository.class).to(MyBatisUserRepository.class);
         bind(DepartmentRepo.class).to(DepartmentRepoImpl.class);
         bind(RoleRepo.class).to(RoleRepoImpl.class);
+        bind(EmployeeRepo.class).to(EmployeeRepoImpl.class);
     }
 
     private void bindPersistence() {

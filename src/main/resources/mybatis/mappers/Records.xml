@@ -28,4 +28,12 @@
         <result property="id" column="roleId"/>
     </resultMap>
 
+    <resultMap id="employee" type="com.thoughtworks.ketsu.domain.employees.Employee">
+        <result property="name" column="employeeName"/>
+        <result property="id" column="employeeId"/>
+        <result property="gender" column="employeeGender"/>
+        <association property="department" resultMap="department"/>
+        <association property="role" resultMap="role"/>
+    </resultMap>
+
 </mapper>

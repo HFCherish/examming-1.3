@@ -23,7 +23,7 @@ public class Employee implements Record {
 
     }
 
-    public Employee(Department department, Role role, Gender gender, String name) {
+    public Employee(String name, Department department, Role role, Gender gender) {
         this.id = IdGenerator.next();
         this.department = department;
         this.role = role;
