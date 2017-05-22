@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.thoughtworks.ketsu.web.validators.Validators.*;
+
 @Path("departments")
 public class DepartmentsApi {
     @POST
@@ -19,6 +21,11 @@ public class DepartmentsApi {
     public Response create(Map<String, Object> info,
                                @Context DepartmentRepo departmentRepo,
                                @Context Routes routes) {
+
+        validate(info, all(
+                fieldNotEmpty("name")
+        ));
+
         Department save = departmentRepo.save(new Department(info.get("name").toString()));
         return Response.created(routes.resourceUrl(routes.DEPARTMENT_RESOURCE, save.getId())).build();
     }
