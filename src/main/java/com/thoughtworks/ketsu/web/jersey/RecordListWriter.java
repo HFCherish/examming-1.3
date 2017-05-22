@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.thoughtworks.ketsu.util.Json.toJson;
 import static java.util.stream.Collectors.toList;
@@ -36,7 +38,11 @@ public class RecordListWriter implements MessageBodyWriter<List<? extends Record
     @Override
     public void writeTo(List<? extends Record> records, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
         try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(entityStream)) {
-            outputStreamWriter.write(toJson(records.stream().map(record -> record.toJson(routesProvider.get())).collect(toList())));
+            List<Map<String, Object>> res = records.stream().map(record -> record.toJson(routesProvider.get())).collect(toList());
+            outputStreamWriter.write(toJson(new HashMap(){{
+                put("totalCount", res.size());
+                put(type.getSimpleName() + "s", res);
+            }}));
         }
     }
 }

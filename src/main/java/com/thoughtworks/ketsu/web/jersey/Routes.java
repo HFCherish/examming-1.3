@@ -9,6 +9,10 @@ public class Routes {
 
     private final String baseUri;
 
+    public static String ROLE_RESOURCE = "roles";
+    public static String DEPARTMENT_RESOURCE = "departments";
+    public static String EMPLOYEE_RESOURCE = "employees";
+
     public Routes(UriInfo uriInfo) {
         baseUri = uriInfo.getBaseUri().toASCIIString();
     }
@@ -16,4 +20,9 @@ public class Routes {
     public URI userUrl(User user) {
         return URI.create(String.format("%susers/%s", baseUri, user.getUserId().id()));
     }
+
+    public URI resourceUrl(String resourceGroupName, long id) {
+        return URI.create(String.format("%s%s/%s", baseUri, resourceGroupName, id));
+    }
+
 }
