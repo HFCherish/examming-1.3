@@ -8,7 +8,7 @@
 	* return 400 when field empty; --20 : 10
 * get
 	* return 200 when get all
-	* try to get from db and can get all details -- 15
+	* try to get from db and can get all details -- 15 : 40
 
 
 # /departments/did
@@ -16,7 +16,7 @@
 	* return 200 when get one
 	* contains right details in response; 
 
-	* return 404 when not exists --15
+	* return 404 when not exists --15 : 1
 * update
  	* return 204 when update
 

@@ -22,7 +22,6 @@ public class DepartmentApiTest extends ApiSupport {
     @Inject
     DepartmentRepo departmentRepo;
 
-    String baseUrl;
     private Department department;
 
     @Override
@@ -30,16 +29,25 @@ public class DepartmentApiTest extends ApiSupport {
     public void setUp() throws Exception {
         super.setUp();
         department = prepareDepartmentWithDefaultInfo(departmentRepo);
-        baseUrl = "/departments/" + department.getId();
+    }
+
+    private String getBaseUrl(long departmentId) {
+        return "/departments/" + departmentId;
     }
 
     @Test
     public void should_200_when_get_one() throws Exception {
-        final Response response = get(baseUrl);
+        final Response response = get(getBaseUrl(department.getId()));
 
         assertThat(response.getStatus(), is(200));
         assertThat(Long.valueOf(response.readEntity(Map.class).get("id").toString()), is(department.getId()));
+    }
 
+    @Test
+    public void should_404_when_get_one() throws Exception {
+        final Response response = get(getBaseUrl(1l));
+
+        assertThat(response.getStatus(), is(404));
     }
 
 }
