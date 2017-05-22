@@ -11,7 +11,11 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
+import java.util.Map;
+
 import static com.thoughtworks.ketsu.support.TestHelper.prepareDepartmentWithDefaultInfo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(ApiTestRunner.class)
 public class DepartmentApiTest extends ApiSupport {
@@ -31,10 +35,11 @@ public class DepartmentApiTest extends ApiSupport {
 
     @Test
     public void should_200_when_get_one() throws Exception {
-        final Response post = get(baseUrl);
+        final Response response = get(baseUrl);
 
-//        assertThat(post.getStatus(), is(200));
-//        assertThat(post.getLocation().toString().matches(".*departments/\\d+$"), is(true));
+        assertThat(response.getStatus(), is(200));
+        assertThat(Long.valueOf(response.readEntity(Map.class).get("id").toString()), is(department.getId()));
+
     }
 
 }
