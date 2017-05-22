@@ -5,6 +5,7 @@ import com.thoughtworks.ketsu.domain.departments.DepartmentRepo;
 import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.DepartmentMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Optional;
 
 public class DepartmentRepoImpl implements DepartmentRepo {
@@ -20,5 +21,10 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     public Department save(Department department) {
         departmentMapper.save(department);
         return departmentMapper.ofId(department.getId());
+    }
+
+    @Override
+    public List<Department> findAll() {
+        return departmentMapper.findAll();
     }
 }

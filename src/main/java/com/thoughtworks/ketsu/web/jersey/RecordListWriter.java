@@ -41,7 +41,9 @@ public class RecordListWriter implements MessageBodyWriter<List<? extends Record
             List<Map<String, Object>> res = records.stream().map(record -> record.toJson(routesProvider.get())).collect(toList());
             outputStreamWriter.write(toJson(new HashMap(){{
                 put("totalCount", res.size());
-                put(type.getSimpleName() + "s", res);
+                String typeName = genericType.getTypeName();
+                String resourceName = typeName.substring(typeName.lastIndexOf(".") + 1, typeName.length() - 1).toLowerCase();
+                put(resourceName + "s", res);
             }}));
         }
     }

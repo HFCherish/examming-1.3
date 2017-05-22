@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.domain.departments;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -9,4 +10,6 @@ public interface DepartmentRepo {
     Optional<Department> ofId(long id);
 
     Department save(Department department);
+
+    List<Department> findAll();
 }

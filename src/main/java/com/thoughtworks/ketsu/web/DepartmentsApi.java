@@ -33,11 +33,11 @@ public class DepartmentsApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Department> getAll(@Context DepartmentRepo departmentRepo) {
-        return new ArrayList<>();
+        return departmentRepo.findAll();
     }
 
     @Path("{id}")
-    public DepartmentApi getUser(@PathParam("id") long id,
+    public DepartmentApi getOne(@PathParam("id") long id,
                            @Context DepartmentRepo departmentRepo) {
         return departmentRepo.ofId(id)
                 .map(DepartmentApi::new)
