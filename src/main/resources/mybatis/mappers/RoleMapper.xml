@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thoughtworks.ketsu.infrastructure.mybatis.mappers.RoleMapper">
+    <insert id="save">
+        INSERT INTO roles (id, title)
+        VALUES (#{role.id}, #{role.title})
+    </insert>
+
+    <select id="ofId" resultMap="records.role">
+        SELECT
+          <include refid="columns.role"/>
+        FROM roles D
+        WHERE D.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="records.role">
+        SELECT
+        <include refid="columns.role"/>
+        FROM roles D
+    </select>
+
+    <select id="delete">
+        DELETE FROM roles
+        WHERE id = #{id}
+    </select>
+
+    <select id="update">
+        UPDATE roles SET
+        title = #{role.title}
+        WHERE id = #{id}
+    </select>
+
+</mapper>
