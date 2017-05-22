@@ -10,4 +10,15 @@
         U.password as userPassword,
         U.role as userRole
     </sql>
+
+    <sql id="department">
+        D.id as departmentId,
+        D.name as departmentName
+    </sql>
+
+    <sql id="role">
+        D.id as roleId,
+        D.title as roleTitle
+    </sql>
+
 </mapper>
