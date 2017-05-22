@@ -12,4 +12,8 @@ public interface DepartmentRepo {
     Department save(Department department);
 
     List<Department> findAll();
+
+    void delete(long id);
+
+    void update(long id, Department department);
 }

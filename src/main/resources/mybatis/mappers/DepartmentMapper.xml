@@ -19,4 +19,15 @@
         FROM departments D
     </select>
 
+    <select id="delete">
+        DELETE FROM departments
+        WHERE id = #{id}
+    </select>
+
+    <select id="update">
+        UPDATE departments SET
+        name = #{department.name}
+        WHERE id = #{id}
+    </select>
+
 </mapper>

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 import java.util.Map;
 
+import static com.thoughtworks.ketsu.support.TestHelper.departmentJsonForTest;
 import static com.thoughtworks.ketsu.support.TestHelper.prepareDepartmentWithDefaultInfo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -36,7 +37,7 @@ public class DepartmentApiTest extends ApiSupport {
     }
 
     @Test
-    public void should_200_when_get_one() throws Exception {
+    public void should_200_when_get_one(){
         final Response response = get(getBaseUrl(department.getId()));
 
         assertThat(response.getStatus(), is(200));
@@ -44,10 +45,27 @@ public class DepartmentApiTest extends ApiSupport {
     }
 
     @Test
-    public void should_404_when_get_one() throws Exception {
+    public void should_404_when_get_one(){
         final Response response = get(getBaseUrl(1l));
 
         assertThat(response.getStatus(), is(404));
     }
 
+    @Test
+    public void should_204_when_udpate(){
+        Map<String, Object> input = departmentJsonForTest();
+        input.replace("name", "change");
+
+        final Response response = put(getBaseUrl(department.getId()), input);
+
+        assertThat(response.getStatus(), is(204));
+    }
+
+    @Test
+    public void should_204_when_delete(){
+
+        final Response response = delete(getBaseUrl(department.getId()));
+
+        assertThat(response.getStatus(), is(204));
+    }
 }

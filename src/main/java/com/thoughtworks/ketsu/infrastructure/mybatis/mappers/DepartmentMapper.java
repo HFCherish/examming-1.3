@@ -11,4 +11,8 @@ public interface DepartmentMapper {
     void save(@Param("department") Department department);
 
     List<Department> findAll();
+
+    void delete(@Param("id") long id);
+
+    void update(@Param("id") long id, @Param("department") Department department);
 }

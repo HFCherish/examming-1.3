@@ -27,4 +27,14 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     public List<Department> findAll() {
         return departmentMapper.findAll();
     }
+
+    @Override
+    public void delete(long id) {
+        departmentMapper.delete(id);
+    }
+
+    @Override
+    public void update(long id, Department department) {
+        departmentMapper.update(id, department);
+    }
 }
